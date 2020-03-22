@@ -31,6 +31,10 @@ public class Member {
     @OneToMany(mappedBy = "member") // 연관 관계의 주인
     private List<Order> orders = new ArrayList<>();
 
+    @OneToOne
+    @JoinColumn(name = "memberShip_id")
+    private MemberShip memberShip;
+
     public Member(String name, String city, String street, String zipCode) {
         this.name = name;
         this.city = city;
