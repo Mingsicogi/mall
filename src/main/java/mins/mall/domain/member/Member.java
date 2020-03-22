@@ -26,7 +26,7 @@ public class Member extends BasicEntity {
     private String street;
     private String zipCode;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "team_id")
     private Team team;
 
