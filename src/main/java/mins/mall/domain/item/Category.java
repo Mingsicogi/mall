@@ -19,7 +19,7 @@ public class Category extends BasicEntity {
     private String name;
 
     // self relation
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "parent_id")
     private Category parent;
     @OneToMany(mappedBy = "parent")

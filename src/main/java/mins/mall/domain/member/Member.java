@@ -33,7 +33,7 @@ public class Member extends BasicEntity {
     @OneToMany(mappedBy = "member", cascade = CascadeType.ALL, orphanRemoval = true) // 연관 관계의 주인
     private List<Order> orders = new ArrayList<>();
 
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "memberShip_id")
     private MemberShip memberShip;
 

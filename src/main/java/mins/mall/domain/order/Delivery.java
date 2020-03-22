@@ -16,6 +16,6 @@ public class Delivery {
     private DeliveryStatus status;
 
     // 양방향 1:1 관계설정(주인설정)
-    @OneToOne(mappedBy = "delivery")
+    @OneToOne(fetch = FetchType.LAZY, mappedBy = "delivery")
     private Order order;
 }
