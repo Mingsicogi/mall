@@ -2,11 +2,9 @@ package mins.mall;
 
 import mins.mall.domain.member.Member;
 import mins.mall.domain.member.Team;
+import org.hibernate.Hibernate;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.EntityTransaction;
-import javax.persistence.Persistence;
+import javax.persistence.*;
 
 public class Main {
     public static void main(String[] args) {
@@ -34,6 +32,33 @@ public class Main {
         System.out.println("================================");
         teamA.getMembers().forEach(t -> System.out.println("##### " + t.getName()));
         System.out.println("================================");
+
+
+        System.out.println("##################################################");
+        System.out.println("##################################################");
+
+        // proxy example
+        Member testMember = new Member();
+        testMember.setName("test123");
+
+        em.persist(testMember);
+        em.flush();
+        em.clear();
+
+//        Member findTestMember = em.find(Member.class, 2L);
+        PersistenceUnitUtil persistenceUnitUtil = emf.getPersistenceUnitUtil();
+        Member findTestMember = em.getReference(Member.class, 2L); // proxy object
+        System.out.println("### findTestMember isLoaded? " + persistenceUnitUtil.isLoaded(findTestMember));
+        System.out.println("### Member class == findTestMember.class ? " + (findTestMember instanceof Member));
+        System.out.println("### findTestMember.class = " + findTestMember.getClass());
+
+        Hibernate.initialize(findTestMember); // 강제 초기화
+        System.out.println("### findTestMember isLoaded? " + persistenceUnitUtil.isLoaded(findTestMember));
+        System.out.println("### Member class == findTestMember.class ? " + (findTestMember instanceof Member));
+        System.out.println("### findTestMember.name = " + findTestMember.getName());
+
+        System.out.println("### findTestMember.team.name = " + findTestMember.getTeam().getName());
+
 
         tx.commit();
 
