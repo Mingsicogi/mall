@@ -1,7 +1,7 @@
 package mins.mall;
 
-import mins.mall.domain.Member;
-import mins.mall.domain.Team;
+import mins.mall.domain.member.Member;
+import mins.mall.domain.member.Team;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;

@@ -1,4 +1,4 @@
-package mins.mall.domain;
+package mins.mall.domain.order;
 
 public enum  DeliveryStatus {
     DEPARTURE, DELIVERYING, ARRIVE

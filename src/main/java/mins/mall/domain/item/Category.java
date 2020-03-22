@@ -1,11 +1,16 @@
-package mins.mall.domain;
+package mins.mall.domain.item;
+
+import lombok.Data;
+import mins.mall.domain.common.BasicEntity;
+import mins.mall.domain.item.common.Item;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-public class Category {
+@Data
+public class Category extends BasicEntity {
 
     @Id @GeneratedValue
     @Column(name = "category_id")

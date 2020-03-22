@@ -1,8 +1,11 @@
-package mins.mall.domain;
+package mins.mall.domain.member;
+
+import lombok.Data;
 
 import javax.persistence.*;
 
 @Entity
+@Data
 public class MemberShip {
 
     @Id @GeneratedValue

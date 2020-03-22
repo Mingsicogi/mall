@@ -1,6 +1,7 @@
-package mins.mall.domain;
+package mins.mall.domain.order;
 
 import lombok.Data;
+import mins.mall.domain.member.Member;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;

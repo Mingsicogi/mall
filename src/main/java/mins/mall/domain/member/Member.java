@@ -1,8 +1,10 @@
-package mins.mall.domain;
+package mins.mall.domain.member;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import mins.mall.domain.common.BasicEntity;
+import mins.mall.domain.order.Order;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -12,7 +14,7 @@ import java.util.List;
 @Getter
 @Setter
 @NoArgsConstructor
-public class Member {
+public class Member extends BasicEntity {
 
     @Id
     @GeneratedValue

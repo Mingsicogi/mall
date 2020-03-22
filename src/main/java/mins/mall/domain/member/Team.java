@@ -1,4 +1,4 @@
-package mins.mall.domain;
+package mins.mall.domain.member;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
