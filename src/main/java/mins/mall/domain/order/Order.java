@@ -38,4 +38,9 @@ public class Order {
         this.member = member;
         member.getOrders().add(this);
     }
+
+    @Override
+    public String toString() {
+        return "id = " + id + " OrderStatus = " + status.name();
+    }
 }

@@ -2,9 +2,12 @@ package mins.mall;
 
 import mins.mall.domain.member.Member;
 import mins.mall.domain.member.Team;
+import mins.mall.domain.order.Order;
+import mins.mall.domain.order.OrderStatus;
 import org.hibernate.Hibernate;
 
 import javax.persistence.*;
+import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
@@ -59,6 +62,35 @@ public class Main {
 
         System.out.println("### findTestMember.team.name = " + findTestMember.getTeam().getName());
 
+
+
+        System.out.println("##################################################");
+        System.out.println("##################################################");
+
+        // cascade + orphanEntity
+        Order order1 = new Order();
+        order1.setStatus(OrderStatus.ORDER);
+        Order order2 = new Order();
+        order2.setStatus(OrderStatus.CANCEL);
+
+        Member newMember = new Member();
+        newMember.setName("new");
+
+        order1.setMember(newMember);
+        order2.setMember(newMember);
+
+        em.persist(newMember);
+
+        em.flush();
+        em.clear();
+
+        Member findNewMember = em.find(Member.class, newMember.getId());
+        System.out.println("##### persistenceUnitUtil.isLoaded? " + persistenceUnitUtil.isLoaded(findNewMember));
+        System.out.println("##### findNewMember.getName = " + findNewMember.getName());
+        findNewMember.getOrders().forEach(order -> System.out.println("##### " + order.toString()));
+
+        findNewMember.getOrders().remove(0);
+        em.remove(findNewMember);
 
         tx.commit();
 

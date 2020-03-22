@@ -30,7 +30,7 @@ public class Member extends BasicEntity {
     @JoinColumn(name = "team_id")
     private Team team;
 
-    @OneToMany(mappedBy = "member") // 연관 관계의 주인
+    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL, orphanRemoval = true) // 연관 관계의 주인
     private List<Order> orders = new ArrayList<>();
 
     @OneToOne
