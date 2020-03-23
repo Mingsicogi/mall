@@ -22,9 +22,8 @@ public class Member extends BasicEntity {
     private Long id;
 
     private String name;
-    private String city;
-    private String street;
-    private String zipCode;
+    @Embedded
+    private Address address;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "team_id")
@@ -37,11 +36,9 @@ public class Member extends BasicEntity {
     @JoinColumn(name = "memberShip_id")
     private MemberShip memberShip;
 
-    public Member(String name, String city, String street, String zipCode) {
+    public Member(String name, Address address) {
         this.name = name;
-        this.city = city;
-        this.street = street;
-        this.zipCode = zipCode;
+        this.address = address;
     }
 
     /**

@@ -1,5 +1,6 @@
 package mins.mall;
 
+import mins.mall.domain.member.Address;
 import mins.mall.domain.member.Member;
 import mins.mall.domain.member.Team;
 import mins.mall.domain.order.Order;
@@ -19,7 +20,9 @@ public class Main {
         Team team = new Team("teamA");
         em.persist(team);
 
-        Member member = new Member("minssogi", "seoul", "dapsibri", "11-223");
+        Address address = new Address("seoul", "dapsibri", "11-223");
+
+        Member member = new Member("minssogi", address);
         member.setTeam(team);
         em.persist(member);
 
