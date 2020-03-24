@@ -8,7 +8,6 @@ import mins.mall.domain.order.OrderStatus;
 import org.hibernate.Hibernate;
 
 import javax.persistence.*;
-import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
@@ -24,13 +23,30 @@ public class Main {
 
         Member member = new Member("minssogi", address);
         member.setTeam(team);
+
+        member.getFavoriteFoods().add("pizza");
+        member.getFavoriteFoods().add("chicken");
+
+        Address address_a = new Address("서울시", "dapsibri", "11-223");
+        Address address_b = new Address("경기도", "dapsibri", "11-223");
+        member.getAddressesHist().add(address_a);
+        member.getAddressesHist().add(address_b);
+
         em.persist(member);
 
         // 주인이 아닌 객체의 값은 읽기 전용임. 값을 셋팅해도 하이버네이트에선 flush시점에 업데이트 쿼리를 하지않음.
 //        team.getMembers().add(member); // 양방향 연관관계의 경우 연관관계의 주인뿐만 아니라 주인을 정한 엔티티도 값을 셋팅하는 것을 추천.
 
-//        em.flush();
-//        em.clear();
+        em.flush();
+        em.clear();
+        System.out.println("##################################################");
+        Member member1 = em.find(Member.class, member.getId());
+        member1.getFavoriteFoods().remove("pizza");
+        member1.getFavoriteFoods().add("비빔밥");
+
+        member1.getAddressesHist().remove(new Address("경기도", "dapsibri", "11-223"));
+        member1.getAddressesHist().add(new Address("부산광역시", "dapsibri", "11-223"));
+        em.persist(member1);
 
         Team teamA = em.find(Member.class, member.getId()).getTeam();
         System.out.println("\n##### " + teamA.getName() + " #####\n");
