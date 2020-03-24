@@ -95,6 +95,12 @@ public class Main {
         findNewMember.getOrders().remove(0);
         em.remove(findNewMember);
 
+        Address address1 = new Address();
+        Address address2 = new Address();
+
+        System.out.println("address1 == address2 ? " + (address1 == address2));
+        System.out.println("address1.equals(address2) ? " + address1.equals(address2));
+
         tx.commit();
 
         em.close();

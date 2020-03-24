@@ -36,6 +36,16 @@ public class Member extends BasicEntity {
     @JoinColumn(name = "memberShip_id")
     private MemberShip memberShip;
 
+    @Embedded
+    // 컬럼명 재정의
+    @AttributeOverrides(value = {
+            @AttributeOverride(name = "city", column = @Column(name = "oldAddress_city")),
+            @AttributeOverride(name = "street", column = @Column(name = "oldAddress_street")),
+            @AttributeOverride(name = "zipCode", column = @Column(name = "oldAddress_zipCode"))
+
+    })
+    private Address oldAddress;
+
     public Member(String name, Address address) {
         this.name = name;
         this.address = address;

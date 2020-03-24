@@ -2,6 +2,7 @@ package mins.mall.domain.member;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.Embeddable;
@@ -10,6 +11,7 @@ import javax.persistence.Embeddable;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@EqualsAndHashCode(callSuper = false)
 public class Address {
 
     private String city;
