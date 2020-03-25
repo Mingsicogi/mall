@@ -1,5 +1,7 @@
 package mins.mall.domain.order;
 
+import mins.mall.domain.member.Address;
+
 import javax.persistence.*;
 
 @Entity
@@ -9,9 +11,9 @@ public class Delivery {
     @Column(name = "delivery_id")
     private Long id;
 
-    private String city;
-    private String street;
-    private String zipCode;
+    @Embedded
+    private Address address;
+
     @Enumerated(value = EnumType.STRING)
     private DeliveryStatus status;
 
